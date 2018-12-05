@@ -17,9 +17,12 @@
 
 #主域名
 Route::domain('www.video.com')->group(function () {
+//    首页
     Route::get('/', function () {
         return view('Home/Index.Index');
     });
+
+
 });
 
 # api 接口
@@ -27,8 +30,21 @@ Route::domain('api.video.com')->group(function () {
     Route::get('/', function () {
         return 'API';
     });
+
+
+
 });
 
+# 后台
+Route::domain('admin.video.com')->group(function () {
+    //登录
+    Route::get('/', function () {
+        return view('Admin/Login.Login');
+    });
 
+
+
+
+});
 
 
