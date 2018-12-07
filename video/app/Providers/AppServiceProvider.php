@@ -14,6 +14,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+        config(['domainApi' => 'http://api.video.com/index.php/']);
+        config(['domainAdmin' => 'http://admin.video.com/index.php']);
     }
 
     /**

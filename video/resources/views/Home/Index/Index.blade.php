@@ -1,9 +1,5 @@
 @extends('Home/Layout.Film')
-
-@section('title')
-    首页
-@endsection
-
+@section('title', '首页')
 @section('centent')
     <div class="centent">
         <!-- 导航 -->

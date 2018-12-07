@@ -148,7 +148,7 @@
     <div class="container">
 
         <div class="col-md-5 w3ls_footer_grid1_left">
-            <p>Copyright &copy; 2016.Company name All rights reserved.</p> <p>-----视频均来源于Web，如有侵权请<a target="_blank" href="#">联系我</a></p>
+            <p>Copyright &copy; 2016.Company name All rights reserved.</p> <p>-----视频均来源于Web，如有侵权请<a target="_blank" href="tencent://Message/?Uin=2784279750websiteName=www.qq.com&Menu=yes">联系我</a></p>
         </div>
         <div class="col-md-7 w3ls_footer_grid1_right">
             <ul>
