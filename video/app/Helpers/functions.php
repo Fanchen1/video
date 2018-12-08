@@ -90,7 +90,38 @@ function Error($status='00001',$msg, $data=''){
 }
 
 
-
+/*
+    * url:访问路径
+    * array:要传递的数组
+    * */
+function curl_post($url, $array)
+{
+    $curl = curl_init();
+    $user_agent = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.146 Safari/537.36";
+    $mobile_user_agent = "Mozilla/5.0 (iPhone; CPU iPhone OS 8_0 like Mac OS X) AppleWebKit/600.1.3 (KHTML, like Gecko) Version/8.0 Mobile/12A4345d Safari/600.1.4";
+    $referer = "http://www.rartxt.com";
+    $cookies = 'csrftoken=NK9zWiHi1QGpvvSYDk9zEmFNXfJ77bj77ZmTaEla5JgHDe1Cgw2UJNHvs6qIvaJa; sessionid=z8nncax7og8b3x74fw8nt2svp6l89pqa';
+    //设置提交的url
+    curl_setopt($curl, CURLOPT_URL, $url);
+    //设置头文件的信息作为数据流输出
+    curl_setopt($curl, CURLOPT_HEADER, 0);
+    //设置获取的信息以文件流的形式返回，而不是直接输出。
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($curl, CURLOPT_USERAGENT, $user_agent);
+    //curl_setopt($curl,CURLOPT_REFERER,$referer);
+    //curl_setopt($curl, CURLOPT_COOKIE, $cookies);
+    //设置post方式提交
+    curl_setopt($curl, CURLOPT_POST, 1);
+    //设置post数据
+    $post_data = $array;
+    curl_setopt($curl, CURLOPT_POSTFIELDS, $post_data);
+    //执行命令
+    $data = curl_exec($curl);
+    //关闭URL请求
+    curl_close($curl);
+    //获得数据并返回
+    return $data;
+}
 
 
 
