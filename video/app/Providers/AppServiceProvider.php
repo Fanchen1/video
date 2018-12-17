@@ -16,6 +16,7 @@ class AppServiceProvider extends ServiceProvider
         //
         config(['domainApi' => 'http://api.video.com/index.php/']);
         config(['domainAdmin' => 'http://admin.video.com/index.php']);
+        config(['Year' => '2018']);//查询年月
     }
 
     /**

@@ -15,11 +15,9 @@ class AdminLogin
      */
     public function handle($request, Closure $next)
     {
-
-
-
-
-
+        if(!session('adminName')){
+            return redirect('/index.php/AdminLogin');
+        }
         return $next($request);
     }
 }

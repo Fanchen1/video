@@ -65,70 +65,77 @@
 
 
                 <li>
-                    <a class="active-menu" href="index.html"><i class="fa fa-dashboard "></i>Dashboard</a>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-desktop "></i>UI Elements <span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-desktop "></i>视频管理<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="panel-tabs.html"><i class="fa fa-toggle-on"></i>Tabs & Panels</a>
+                            <a href="#">电影管理<span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="{{url('dyAdd')}}"><i class="fa fa-plus "></i>电影添加</a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-comments-o "></i>电影列表</a>
+                                </li>
+                            </ul>
                         </li>
                         <li>
-                            <a href="notification.html"><i class="fa fa-bell "></i>Notifications</a>
-                        </li>
-                        <li>
-                            <a href="progress.html"><i class="fa fa-circle-o "></i>Progressbars</a>
-                        </li>
-                        <li>
-                            <a href="buttons.html"><i class="fa fa-code "></i>Buttons</a>
-                        </li>
-                        <li>
-                            <a href="icons.html"><i class="fa fa-bug "></i>Icons</a>
-                        </li>
-                        <li>
-                            <a href="wizard.html"><i class="fa fa-bug "></i>Wizard</a>
-                        </li>
-                        <li>
-                            <a href="typography.html"><i class="fa fa-edit "></i>Typography</a>
-                        </li>
-                        <li>
-                            <a href="grid.html"><i class="fa fa-eyedropper "></i>Grid</a>
+                            <a href="#">电视剧管理<span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="{{url('teleplayAdd')}}"><i class="fa fa-plus "></i>电视剧添加</a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-comments-o "></i>电视剧列表</a>
+                                </li>
+                            </ul>
                         </li>
 
-
+                        <li>
+                            <a href="#">动漫管理<span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="#"><i class="fa fa-plus "></i>动漫添加</a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-comments-o "></i>动漫列表</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">综艺管理<span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="#"><i class="fa fa-plus "></i>综艺添加</a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-comments-o "></i>综艺列表</a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </li>
+
                 <li>
-                    <a href="#"><i class="fa fa-yelp "></i>Extra Pages <span class="fa arrow"></span></a>
+                    <a href="#">
+                        <i class="fa fa-yelp ">
+                        </i>分类管理
+                        <span class="fa arrow"></span>
+                    </a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="invoice.html"><i class="fa fa-coffee"></i>Invoice</a>
+                            <a href="{{url('classifyAdd')}}"><i class="fa fa-coffee"></i>分类添加</a>
                         </li>
                         <li>
-                            <a href="pricing.html"><i class="fa fa-flash "></i>Pricing</a>
+                            <a href="#"><i class="fa fa-flash "></i>分类列表</a>
                         </li>
-                        <li>
-                            <a href="component.html"><i class="fa fa-key "></i>Components</a>
-                        </li>
-                        <li>
-                            <a href="social.html"><i class="fa fa-send "></i>Social</a>
-                        </li>
-
-                        <li>
-                            <a href="message-task.html"><i class="fa fa-recycle "></i>Messages & Tasks</a>
-                        </li>
-
-
                     </ul>
                 </li>
                 <li>
                     <a href="table.html"><i class="fa fa-flash "></i>Data Tables </a>
-
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-bicycle "></i>Forms <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-
                         <li>
                             <a href="form.html"><i class="fa fa-desktop "></i>Basic </a>
                         </li>
@@ -168,11 +175,9 @@
                                 </li>
 
                             </ul>
-
                         </li>
                     </ul>
                 </li>
-
                 <li>
                     <a href="blank.html"><i class="fa fa-square-o "></i>Blank Page</a>
                 </li>

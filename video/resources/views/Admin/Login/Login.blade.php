@@ -28,7 +28,7 @@
                 <label>
                     <i class="sublist-icon glyphicon glyphicon-pencil"></i>
                 </label>
-                <input type="password"  placeholder="这里输入登录密码" class="name_inp" name="pwd" maxlength="6">
+                <input type="password"  placeholder="这里输入登录密码" class="name_inp" name="pwd" maxlength="10">
             </div>
             <button class="dl" type="button">登陆</button>
         </form>

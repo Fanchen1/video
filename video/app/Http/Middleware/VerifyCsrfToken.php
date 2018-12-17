@@ -21,5 +21,8 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         //
         'LoginApi',
+        'dyList',
+        'dsjList',
+        'getCx',
     ];
 }

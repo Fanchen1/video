@@ -24,12 +24,26 @@
     <!-- font-awesome icons -->
     <link rel="stylesheet" href="/Home/css/font-awesome.min.css" />
     <!-- //font-awesome icons -->
+    <!-- list-css -->
+    <link rel="stylesheet" href="/Home/list-css/list.css" type="text/css" media="all" />
+    <!-- //list-css -->
+
+    <!-- news-css -->
+    <link rel="stylesheet" href="/Home/news-css/news.css" type="text/css" media="all" />
+    <!-- //news-css -->
+
     <!-- js -->
     <script type="text/javascript" src="/Home/js/jquery-2.1.4.min.js"></script>
     <!-- //js -->
     <!-- banner-bottom-plugin -->
     <link href="/Home/css/owl.carousel.css" rel="stylesheet" type="text/css" media="all">
     <script src="/Home/js/owl.carousel.js"></script>
+    {{--视频--}}
+
+    <!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
+
+
+
     <script>
         $(document).ready(function() {
             $("#owl-demo").owlCarousel({
@@ -44,6 +58,9 @@
 
         });
     </script>
+
+
+
     <!-- //banner-bottom-plugin -->
     <!---<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700italic,700,400italic,300italic,300' rel='stylesheet' type='text/css'>--->
     <!-- start-smoth-scrolling -->
@@ -65,15 +82,55 @@
 <div class="header">
     <div class="container">
         <div class="w3layouts_logo">
-            <a href="index.html"><h1>One<span>Movies</span></h1></a>
+            <a href="{{url('/')}}">
+                <h2>
+                    <span style="color: #3dffc7">小</span>
+                    <span style="color: #7979ff">白</span>
+                    <span style="color: #fd7cff">影</span>
+                    <span style="color: #ff7471">音</span>
+                </h2>
+            </a>
         </div>
 
         <div class="w3_search">
+            <select name="" id="isso">
+                <option value="1">电影</option>
+                <option value="2">电视剧</option>
+                <option value="3">综艺</option>
+                <option value="4">动漫</option>
+            </select>
             <form action="#" method="post">
                 <input type="text" name="Search" placeholder="Search" required="">
-                <input type="submit" value="Go">
+                <input type="button" id="so" value="Go" data-toggle="modal">
             </form>
         </div>
+        <script src="/layui/layui.all.js"></script>
+        <script>
+            $('#so').click(function(){
+                var search = $('[name=Search]').val();
+                var isso = $('#isso').val();
+                if(search == ''){
+                    layer.msg('搜索不能为空！', { anim: 1});
+                    return false;
+                }
+                $.ajax({
+                    url:'/index.php/fresh',
+                    data:{search:search,isso:isso,'_token':'{{csrf_token()}}'},
+                    type:'post',
+                    dataType:'json',
+                    success:function( json_info ){
+                        if(json_info.status == 200){
+                            window.location.href = json_info.url;
+                        }else{
+                            layer.msg(json_info.msg, { anim: 1});
+                            return false;
+                        }
+                    }
+
+                })
+            });
+        </script>
+
         <div class="w3l_sign_in_register">
             <ul>
                 <li><a href="#" data-toggle="modal" data-target="#myModal">一键登录 GO</a></li>
@@ -96,25 +153,36 @@
                 <div class="modal-body">
                     <div class="w3_login_module">
                         <div class="module form-module">
-                            <div class="toggle"><i class="fa fa-times fa-pencil"></i>
+                            <div class="toggle" >
+                                <i class="fa fa-times fa-pencil"></i>
                                 <div class="tooltip">点击我</div>
                             </div>
-                            <div class="form">
+                            <div class="form"  name="Login">
                                 <h3>登录到您的帐户</h3>
                                 <form action="#" method="post">
                                     <input type="text" name="Username" placeholder="Username" required="">
                                     <input type="password" name="Password" placeholder="Password" required="">
-                                    <input type="submit" value="Login">
+                                    <input type="button" value="Login">
                                 </form>
                             </div>
-                            <div class="form">
+                            <div class="form"  name="chuang">
                                 <h3>创建一个帐户</h3>
                                 <form action="#" method="post">
                                     <input type="text" name="Username" placeholder="Username" required="">
                                     <input type="password" name="Password" placeholder="Password" required="">
                                     <input type="email" name="Email" placeholder="Email Address" required="">
                                     <input type="text" name="Phone" placeholder="Phone Number" required="">
-                                    <input type="submit" value="Register">
+                                    <input type="button" value="Register">
+                                </form>
+                            </div>
+                            <div class="form" name="wang">
+                                <h3>忘记密码</h3>
+                                <form action="#" method="post">
+                                    <input type="text" name="Username" placeholder="Username" required="">
+                                    <input type="password" name="Password" placeholder="Password" required="">
+                                    <input type="email" name="Email" placeholder="Email Address" required="">
+                                    <input type="text" name="Phone" placeholder="Phone Number" required="">
+                                    <input type="button" value="sd">
                                 </form>
                             </div>
                             <div class="cta"><a href="#">难道你忘记密码了吗?</a></div>
@@ -127,16 +195,28 @@
 </div>
 <script>
     $('.toggle').click(function(){
-        // Switches the Icon
         $(this).children('i').toggleClass('fa-pencil');
-        // Switches the forms
-        $('.form').animate({
-            height: "toggle",
-            'padding-top': 'toggle',
-            'padding-bottom': 'toggle',
-            opacity: "toggle"
-        }, "slow");
+        if($('[name=Login]').is(':visible')){　　//如果node是隐藏的则显示node元素，否则隐藏
+            $('[name=chuang]').show(1000);
+            $('[name=Login]').hide(1000);
+            $('[name=wang]').hide(1000);
+        }else{
+            $('[name=Login]').show(1000);
+            $('[name=chuang]').hide(1000);
+            $('[name=wang]').hide(1000);
+        }
     });
+    $('.cta').click(function(){
+        if($('[name=Login]').is(':visible')){
+            $('[name=wang]').show(1000);
+            $('[name=Login]').hide(1000);
+            $('[name=chuang]').hide(1000);
+        }else{
+            $('[name=Login]').show(1000);
+            $('[name=wang]').hide(1000);
+            $('[name=chuang]').hide(1000);
+        }
+    })
 </script>
 
 {{-- 中间 --}}
@@ -153,25 +233,25 @@
         <div class="col-md-7 w3ls_footer_grid1_right">
             <ul>
                 <li>
-                    <a href="genres.html">电影</a>
+                    <a href="{{url('moreMovie')}}">电影</a>
                 </li>
                 <li>
-                    <a href="faq.html">常问问题</a>
+                    <a href="{{url('moreTeleplay')}}">电视剧</a>
                 </li>
                 <li>
-                    <a href="horror.html">行动</a>
+                    <a href="horror.html">综艺</a>
                 </li>
                 <li>
-                    <a href="genres.html">冒险</a>
+                    <a href="genres.html">动漫</a>
                 </li>
+                {{--<li>--}}
+                    {{--<a href="comedy.html">喜剧</a>--}}
+                {{--</li>--}}
+                {{--<li>--}}
+                    {{--<a href="icons.html">图标</a>--}}
+                {{--</li>--}}
                 <li>
-                    <a href="comedy.html">喜剧</a>
-                </li>
-                <li>
-                    <a href="icons.html">图标</a>
-                </li>
-                <li>
-                    <a href="contact.html">联系我们</a>
+                    <a href="tencent://Message/?Uin=2784279750websiteName=www.qq.com&Menu=yes">联系我</a>
                 </li>
             </ul>
         </div>
