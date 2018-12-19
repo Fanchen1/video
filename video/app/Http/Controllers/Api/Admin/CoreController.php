@@ -189,6 +189,97 @@ class CoreController extends Controller
         }
     }
 
+    /**
+     * 采集动漫列表数据
+     * @param Request $request
+     * @return array
+     */
+    public function dmList(Request $request){
+        $ComicUrl = $request ->input('ComicUrl'); //采集地址 ， 页码 ， 分类
+        $ComicPage = $request ->input('ComicPage'); //采集地址 ， 页码 ， 分类
+        $ComicClassify = $request ->input('ComicClassify'); //采集地址 ， 页码 ， 分类
+        if(empty($ComicUrl) || empty($ComicPage)){
+            return var_json('00001','请求缺少参数！');
+        }
+        //是否有分类
+        if(empty($ComicClassify)){
+            $ComicClassify = 1;
+        }
+
+        //查询分类
+        $ClassifyCat = DB::table('classify')
+            ->select('cat')
+            ->where(['c_id'=>$ComicClassify , 'c_status'=>1])
+            ->first();
+        $ClassifyCat = json_decode(json_encode($ClassifyCat) ,true);
+        if(empty($ClassifyCat) ){
+            $ClassifyCat = 'all';
+        }
+//        print_r($ClassifyCat);exit;
+        // 采集
+        $rules = [
+            'comic_name' => ['.s-tab-main .s1', 'text', ''],//电视剧名
+            'comic_details_url' => ['.s-tab-main a.js-tongjic', 'href', ''],//电视剧详情地址
+            'comic_img' => ['.s-tab-main .cover.g-playicon img', 'src', ''],//电视剧图片
+            'comic_year' => ['.s-tab-main .hint', 'text'],//电视剧年月
+        ];
+        // createtime 最近上映    rankhot  最近热映    rankpoint 最近好评
+        $data = $this->query
+            ->get($ComicUrl ,
+                [
+                    'cat'=>'all',
+                    'year'=>'all',
+                    'area'=>'all',
+                    'act'=>'all',
+                    'rank'=>'rankhot',
+                    'cat'=>$ClassifyCat['cat'],
+                    'pageno'=>$ComicPage,
+                    'year'=>config('Year'),
+                ],$this->headers)
+            ->rules($rules)
+            ->queryData();
+
+        //是否采集到
+        if(empty($data)){ //未采集到
+            file_put_contents('./error.txt',date('Y-m-d H:i:s',time())."----------电视剧--采集不到请及时更换！！！！\r\n",FILE_APPEND);
+            return var_json('00005','电视剧--采集不到请及时更换！！！！');
+        }else { //采集到了
+            // 判断是否有重复的
+            $comic = DB::table('comic')
+                ->select('comic_name', 'comic_img', 'comic_details_url', 'comic_year')
+                ->get();
+            $comic = json_decode(json_encode($comic), true);
+//            //去重
+            foreach ($comic as $k => $v) {
+                foreach ($data as $kk => $vv) {
+                    if (in_array($vv['comic_name'], $v)) {
+                        unset($data[$kk]);
+                    }
+                }
+            }
+            //有重复的
+            if(empty($data)){
+                return var_json('00001','暂无新资源，换一下试试！');
+            }
+            //赋值
+            foreach ($data as $key=>$value){
+                $data[$key]['classify_id'] = $ComicClassify;
+                $data[$key]['comic_status'] = 1;
+                $data[$key]['comic_ctime'] = time();
+            }
+            //  入库
+            $res = DB::table('comic')->insert($data);
+            if($res){
+                return var_json('','已更新资源');
+            }else{
+                file_put_contents('./error.txt',date('Y-m-d H:i:s',time())."----------动漫--添加失败请检查！！！！\r\n",FILE_APPEND);
+                return var_json('00001','添加失败');
+            }
+            //
+        }
+
+
+    }
 
 
     /**

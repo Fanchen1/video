@@ -26,6 +26,8 @@ Route::domain('www.video.com')->group(function () {
     //更多列表
     Route::match(['get','post'] ,'moreMovie' , 'Home\IndexController@moreMovie');
     Route::match(['get','post'] ,'moreTeleplay' , 'Home\IndexController@moreTeleplay');
+    Route::match(['get','post'] ,'moreComic' , 'Home\IndexController@moreComic');
+
     //尝鲜
     Route::match(['get','post'] ,'fresh' , 'Home\IndexController@fresh');
     //搜索展示
@@ -48,13 +50,18 @@ Route::group(['middleware'=>'islogin'],function(){
     Route::match(['get','post'] ,'teleplayAdd', 'Admin\TeleplayController@teleplayAdd');//电视剧--添加
     Route::match(['get','post'] ,'teleplayAddDo', 'Admin\TeleplayController@teleplayAddDo');//电视剧--执行添加
     Route::match(['get','post'] ,'caidsj', 'Admin\TeleplayController@caiDsj');//电视剧--采集添加
+    //动漫添加
+    Route::match(['get','post'] ,'comicAdd', 'Admin\ComicController@comicAdd');//动漫-添加
+    Route::match(['get','post'] ,'comicAddDo', 'Admin\ComicController@comicAddDo');//动漫--添加
+    Route::match(['get','post'] ,'caiComic', 'Admin\ComicController@caiComic');//动漫--采集添加
+
+
+    //综艺添加
 
 
 
 
 
-
-    Route::match(['get','post'] ,'dyXing', 'Admin\CoreController@dyXing');//电影--最新
     //分类
     Route::match(['get','post'] ,'classifyAdd', 'Admin\ClassifyController@classifyAdd');
     Route::match(['get','post'] ,'classifyAddDo', 'Admin\ClassifyController@classifyAddDo');
@@ -62,15 +69,14 @@ Route::group(['middleware'=>'islogin'],function(){
 
 
     ############ 采集
-    Route::match(['get','post'] ,'dsjList', 'Admin\CoreController@dsjList');//电视剧--列表
-    Route::match(['get','post'] ,'dsjDetails', 'Admin\CoreController@dsjDetails');//电视剧--详情
+//    Route::match(['get','post'] ,'dsjList', 'Admin\CoreController@dsjList');//电视剧--列表
+//    Route::match(['get','post'] ,'dsjDetails', 'Admin\CoreController@dsjDetails');//电视剧--详情
+//    Route::match(['get','post'] ,'dyDetails', 'Admin\CoreController@dyDetails');//电影--详情
+//    Route::match(['get','post'] ,'zyList', 'Admin\CoreController@zyList');//综艺--列表
+//    Route::match(['get','post'] ,'dmList', 'Admin\CoreController@dmList');//电影--列表
+//    Route::match(['get','post'] ,'getSearch', 'Admin\CoreController@getSearch');//搜索
+//    Route::match(['get','post'] ,'getCx', 'Admin\CoreController@getCx');//搜索
 
-
-    Route::match(['get','post'] ,'dyDetails', 'Admin\CoreController@dyDetails');//电影--详情
-    Route::match(['get','post'] ,'zyList', 'Admin\CoreController@zyList');//综艺--列表
-    Route::match(['get','post'] ,'dmList', 'Admin\CoreController@dmList');//电影--列表
-    Route::match(['get','post'] ,'getSearch', 'Admin\CoreController@getSearch');//搜索
-    Route::match(['get','post'] ,'getCx', 'Admin\CoreController@getCx');//搜索
 });
 
 

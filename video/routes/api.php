@@ -33,6 +33,9 @@ Route::get('/', function () {
 Route::match(['get','post'] ,'LoginApi','Api\Admin\LoginApiController@loginApi') ;
 //采集 入库
 Route::match(['get','post'] ,'dyList', 'Api\Admin\CoreController@dyList');//电影--列表
-Route::match(['get','post'] ,'dsjList', 'Api\Admin\CoreController@dsjList');//电影--列表
+Route::match(['get','post'] ,'dsjList', 'Api\Admin\CoreController@dsjList');//电视剧--列表
+Route::match(['get','post'] ,'dmList', 'Api\Admin\CoreController@dmList');//动漫--列表
+Route::match(['get','post'] ,'zyList', 'Api\Admin\CoreController@zyList');//综艺--列表
+
 //尝鲜
 Route::match(['get','post'] ,'getCx', 'Api\Admin\CoreController@getCx');

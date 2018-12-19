@@ -94,7 +94,7 @@
                             <a href="#">动漫管理<span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">
                                 <li>
-                                    <a href="#"><i class="fa fa-plus "></i>动漫添加</a>
+                                    <a href="{{url('comicAdd')}}"><i class="fa fa-plus "></i>动漫添加</a>
                                 </li>
                                 <li>
                                     <a href="#"><i class="fa fa-comments-o "></i>动漫列表</a>

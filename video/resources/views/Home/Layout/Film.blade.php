@@ -96,8 +96,8 @@
             <select name="" id="isso">
                 <option value="1">电影</option>
                 <option value="2">电视剧</option>
-                <option value="3">综艺</option>
-                <option value="4">动漫</option>
+                {{--<option value="3">综艺</option>--}}
+                <option value="3">动漫</option>
             </select>
             <form action="#" method="post">
                 <input type="text" name="Search" placeholder="Search" required="">

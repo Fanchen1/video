@@ -7,7 +7,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 class TeleplayController extends Controller
 {
-    //添加视图
+    /**
+     * 添加视图
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function teleplayAdd(){
         //       查分类
         $classify = DB::table('classify')
@@ -24,7 +27,11 @@ class TeleplayController extends Controller
             ->get(),true);
         return view('Admin/Teleplay.Teleplay' ,compact('classify' ,'teleplay_parent' ));
     }
-    //执行添加
+    /**
+     * 执行添加
+     * @param Request $request
+     * @return false|string
+     */
     public function teleplayAddDo(Request $request){
         $teleplay=$request->input();
         if(
@@ -75,7 +82,11 @@ class TeleplayController extends Controller
             }
         }
     }
-    //采集电视剧
+    /**
+     * 采集电视剧
+     * @param Request $request
+     * @return false|mixed|string
+     */
     public function caiDsj(Request $request){
         $dsj = $request->input();
         if(empty($dsj['teleplayUrl']) || empty($dsj['teleplayClassify']) || empty($dsj['teleplayPage'])){

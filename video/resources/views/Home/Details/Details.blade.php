@@ -45,7 +45,7 @@
                     </p><br>
                     <h4>简介：</h4>{{$data['movie_brief']}}
                 </div>
-            @else    {{--电视剧--}}
+            @elseif($status == 2) {{--电视剧--}}
                 <div class="wthree-related-news-left">
                     <h4>{{$data['teleplay_name']}}</h4>
                     <div class="wthree-news-top-left">
@@ -85,6 +85,47 @@
                         @endforeach
                     </div>
                     <h4>简介：</h4>{{$data['teleplay_brief']}}
+                </div>
+            @elseif($status == 3) {{--动漫--}}
+                <div class="wthree-related-news-left">
+                    <h4>{{$data['comic_name']}}</h4>
+                    <div class="wthree-news-top-left">
+                        <div class="col-md-6 w3-agileits-news-left" >
+
+                            <div class="col-sm-5 wthree-news-img" style="top: 10px;">
+                                {{--<a href="news-single.html"><img src="" alt="" /></a>--}}
+                                <a href="{{url('play?bo=comic&bo_id='.$data['comic_id'])}}&level=1" class="hvr-shutter-out-horizontal">
+                                    <img src="{{$data['comic_img']}}" title="{{$data['comic_name']}}" class="img-responsive" alt=" " />
+                                    <div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
+                                </a>
+                            </div>
+                            <div class="col-sm-7 wthree-news-info" style="left: 50px;width:180px;">
+                                <h5>影片：<a href="">{{$data['comic_name']}}</a></h5>
+                                <p>集：{{$data['comic_year']}}</p>
+                                <p>立即播放：
+                                    <b>
+                                        <a href="{{url('play?bo=comic&bo_id='.$data['comic_id'])}}&level=1">
+                                            <span class="label label-primary" style="padding: 10px 12px;">快速播放</span>
+                                        </a>
+                                    </b>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                </div>
+                <div class="wthree-related-news-left">
+                    <h4>剧集：</h4>
+                    <div style="width: 750px;height: 200px">
+                        @foreach($ji as $v)
+                            <div style="width: 55px;height: 50px; float: left;">
+                                <a href="{{url('play?bo=comic&bo_id='.$data['comic_id'])}}&level={{$v['comic_serie_level']}}" >
+                                    <span class="label label-primary" style="padding: 10px 7px;">第{{$v['comic_serie_level']}}集</span>
+                                </a>
+                            </div>
+                        @endforeach
+                    </div>
+                    <h4>简介：</h4>{{$data['comic_brief']}}
                 </div>
             @endif
 

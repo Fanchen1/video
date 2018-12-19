@@ -22,9 +22,9 @@
 
                                 <li><a href="{{url('moreMovie')}}">电影</a></li>
                                 <li><a href="{{url('moreTeleplay')}}">电视剧</a></li>
+                                <li><a href="{{url('moreComic')}}">动漫</a></li>
+                                {{--<li><a href="short-codes.html">综艺</a></li>--}}
 
-                                <li><a href="short-codes.html">综艺</a></li>
-                                <li><a href="list.html">动漫</a></li>
                                 {{--<li class="dropdown">--}}
                                     {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown">分类<b class="caret"></b></a>--}}
                                     {{--<ul class="dropdown-menu multi-column columns-3">--}}
@@ -318,7 +318,6 @@
                 </div>
             </div>
         </div>
-        <!-- //一般的 -->
         {{--电视剧--}}
         <div class="general">
             <h4 class="latest-text w3_latest_text">
@@ -386,7 +385,70 @@
             </div>
         </div>
 
+        {{--动漫--}}
+        <div class="general">
+            <h4 class="latest-text w3_latest_text">
+                <span style="color: #ff7471">动</span>
+                <span style="color: #fd7cff">漫</span>
+                <span style="color: #7979ff">专</span>
+                <span style="color: #d6a7ff">区</span>
+            </h4>
+            <div class="container">
+                <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+                    {{--分类--}}
+                    <ul id="myTab" class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active">
+                            <a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">全部</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="{{url('moreComic')}}" >..........</a>
+                        </li>
+                    </ul>
+                    {{--动漫内容--}}
+                    <div id="myTabContent" class="tab-content">
+                        {{--全部--}}
+                        <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
+                            <div class="w3_agile_featured_movies">
+                                @foreach($dmQuan as $v)
+                                    <div class="col-md-2 w3l-movie-gride-agile">
+                                        <a href="{{url('/index.php/playDetails?comic='.$v['comic_id'])}}" class="hvr-shutter-out-horizontal">
+                                            <img src="{{$v['comic_img']}}" title="{{$v['comic_name']}}" class="img-responsive" alt=" " style="width: 175px;height: 245px;"/>
+                                            <div class="w3l-action-icon">
+                                                <i class="fa fa-play-circle" aria-hidden="true"></i>
+                                            </div>
+                                        </a>
+                                        <div class="mid-1 agileits_w3layouts_mid_1_home">
+                                            <div class="w3l-movie-text">
+                                                <h6><a href="{{url('/index.php/playDetails?comic='.$v['comic_id'])}}">{{$v['comic_name']}}</a></h6>
+                                            </div>
+                                            <div class="mid-2 agile_mid_2_home">
+                                                <p>{{$v['comic_year']}}</p>
+                                                <div class="block-stars">
+                                                    <ul class="w3l-ratings">
+                                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                        {{--<li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>--}}
+                                                    </ul>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                        <div class="ribben">
+                                            <p>新</p>
+                                        </div>
+                                    </div>
+                                @endforeach
+                                <div class="clearfix"> </div>
+                            </div>
+                        </div>
 
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
 

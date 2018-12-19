@@ -23,7 +23,6 @@ class CoreController extends Controller
         $this->ql = new QueryList();
         $this->domin = "https://www.360kan.com";
     }
-
     #采集电视剧--列表数据
     public function dsjList()
     {
@@ -65,13 +64,6 @@ class CoreController extends Controller
         }
         print_r($jian2);exit;
     }
-
-
-
-
-
-
-
     /**
      * 采集电影列表数据
      * createtime 最近上映    rankhot  最近热映    rankpoint 最近好评
@@ -167,10 +159,6 @@ class CoreController extends Controller
 //        $res =  DB::table('film')->insert($dy);
 //        print_r($res);exit;
     }
-
-
-
-
     #采集综艺列表数据
     public function zyList()
     {
@@ -190,7 +178,6 @@ class CoreController extends Controller
             return $data;
         }
     }
-
     #采集动漫列表数据
     public function dmList()
     {
@@ -209,7 +196,6 @@ class CoreController extends Controller
             return $data;
         }
     }
-
     ##### 搜索
     #搜索尝鲜详情地址 url  $key,$dizhi
     public function getCx($url , $key){

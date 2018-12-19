@@ -71,9 +71,40 @@
                         </div>
                         <h4>简介：</h4>{{$data['teleplay_brief']}}
                     </div>
-                @elseif($status == 3){{--综艺--}}
+                @elseif($status == 3){{--动漫--}}
+                <div class="all-comments">
+                    您正在播放的是：
+                    <span style="color: #77fff3">
+                            {{$data['comic_name']}}
+                        </span>
+                </div> <br>
+                <div class="w3_agile_banner_bottom_grid" >
+                    <iframe width="100%" height="450px" class="embed-responsive-item" src="{{$bo}}" frameborder="0" allowfullscreen="true" border="0" marginwidth="0" marginheight="0" scrolling="no">
 
-                @elseif($status == 4){{--动漫--}}
+                    </iframe>
+                </div>
+                <div class="all-comments">
+                    线路：<br>
+                    @foreach($xian as $k=>$v)
+                        <button type="button" class="label label-primary"  style="padding: 10px 7px;" value="{{$v}}" onclick="dm('{{$v}}')">{{$k}}</button>
+                    @endforeach
+                </div>
+                <div class="wthree-related-news-left">
+                    <h4>剧集：</h4>
+                    <div style="width: 1100px;height: 200px">
+                        @foreach($ji as $v)
+                            <div style="width: 55px;height: 50px; float: left;">
+                                <a href="{{url('play?bo=teleplay&bo_id='.$data['comic_id'])}}&level={{$v['comic_serie_level']}}" >
+                                    <span class="label label-primary" style="padding: 10px 7px;">第{{$v['comic_serie_level']}}集</span>
+                                </a>
+                            </div>
+                        @endforeach
+                    </div>
+                    <h4>简介：</h4>{{$data['comic_brief']}}
+                </div>
+                @elseif($status == 4){{--综艺--}}
+
+
 
                 @endif
 

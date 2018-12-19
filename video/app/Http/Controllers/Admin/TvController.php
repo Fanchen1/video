@@ -44,7 +44,8 @@ class TvController extends Controller
             'movie_yuan_url'=>$dy['filmYuan'],
             'classify_id'=>$dy['ZfilmClassify'],
             'movie_details_url'=>$dy['filmDetails'],
-            'movie_status'=>1
+            'movie_status'=>1,
+            'movie_ctime'=>time()
         ];
 //        print_r($data);exit;
         // 判断是否有重复的
